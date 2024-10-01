@@ -1,5 +1,6 @@
 import "./App.css";
-import CustomCalendar from "./CustomCalendar";
+import "./_styles.scss";
+import Calendar from "./Calendar";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       </div>
       <div className="window-contnet">
         <div>
-          <CustomCalendar />
+          <Calendar />
         </div>
       </div>
     </div>
