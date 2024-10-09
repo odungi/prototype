@@ -475,8 +475,8 @@ const boxFade = keyframes`
 
 const AccountBoxWrap = styled.div`
   width: 100%;
-  padding-right: 70px;
-  padding-left: 2px;
+  padding-right: 0px;
+  padding-left: 0px;
   height: 454px;
   padding-bottom: 10px;
   margin-left: 50px;

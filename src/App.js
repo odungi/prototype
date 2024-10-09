@@ -4,6 +4,7 @@ import CustomCalendar from "./CustomCalendar";
 import { useState } from "react";
 import AccountWeek from "./components/AccountWeek";
 import AccountWrite from "./components/AccountWrite";
+import ModalProvider from "styled-react-modal";
 
 const accountList = [
   {
@@ -52,7 +53,7 @@ const App = () => {
   const yearMonth = { year: "2024", month: "10" };
   const [isOpen, setOpen] = useState(false);
 
-  function toggleModal(id) {
+  function toggleModal() {
     setOpen(!isOpen);
   }
 
@@ -60,38 +61,32 @@ const App = () => {
 
   return (
     <div className="floating-window">
-      <div className="window-header">
-        <div className="window-title">가계부</div>
-        <div className="window-controls">
-          <div className="window-minimize"></div>
-          <div className="window-maximize"></div>
-          <div className="window-close"></div>
+      <div className="container">
+        <div className="window-header">
+          <div className="window-title">가계부</div>
+          <div className="window-controls">
+            <div className="window-minimize"></div>
+            <div className="window-maximize"></div>
+            <div className="window-close"></div>
+          </div>
         </div>
-      </div>
-      <div className="window-contnet">
-        <div className="calendar">
-          <Wrap>
-            <CalendarWrap>
-              <CustomCalendar accountList={accountList} />
-              <AddAccountBtn
-                onClick={() => {
-                  toggleModal();
-                }}
-              >
-                + 기록하기
-              </AddAccountBtn>
-            </CalendarWrap>
-            <CuurentListWrap>
-              <AccountWeek
-                currentAccount_list={accountList}
-                accountList={accountList}
-                yearMonth={yearMonth}
-              />
-            </CuurentListWrap>
-            {isOpen && (
+        <div className="window-contnet">
+          <div className="calendar">
+            <Wrap>
+              <CalendarWrap>
+                <CustomCalendar accountList={accountList} />
+                <AddAccountBtn onClick={toggleModal}>+ 기록하기</AddAccountBtn>
+              </CalendarWrap>
+              <CuurentListWrap>
+                <AccountWeek
+                  currentAccount_list={accountList}
+                  accountList={accountList}
+                  yearMonth={yearMonth}
+                />
+              </CuurentListWrap>
               <AccountWrite isOpen={isOpen} toggleModal={toggleModal} />
-            )}
-          </Wrap>
+            </Wrap>
+          </div>
         </div>
       </div>
     </div>

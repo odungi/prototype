@@ -23,6 +23,10 @@ const AccountWrite = ({ isOpen, toggleModal, accountId }) => {
     return str.replace(/[^\d]+/g, "");
   }
 
+  function editMemo(memo) {
+    setMemo(memo);
+  }
+
   function inputNumberFromat(e) {
     setPrice(e.target.value);
     e.target.value = comma(uncomma(e.target.value));
@@ -41,9 +45,9 @@ const AccountWrite = ({ isOpen, toggleModal, accountId }) => {
 
   const addAccount = () => {
     if (realPrice === 0) {
-      window.alert("금액을 입력해주세요.");
+      MySwal("오류", "금액을 입력해주세요.", "error");
     } else if (category === null) {
-      window.alert("품목을 선택해주세요.");
+      MySwal("오류", "품목을 입력해주세요.", "error");
     } else {
       toggleModal();
     }
@@ -134,19 +138,19 @@ const AccountWrite = ({ isOpen, toggleModal, accountId }) => {
       <ContentWrap>
         <ContentLabel>날짜</ContentLabel>
         <SDatePicker
-          selected={date}
-          onChange={(date) => {
-            setDate(date);
+          selected={selecDate}
+          onChange={(selecDate) => {
+            setDate(selecDate);
           }}
           dateFormat="yyyy년 MM월 dd일"
           // minDate={new Date()}
-          value={date}
+          value={selecDate}
         />
       </ContentWrap>
 
       <ContentWrap>
         <ContentLabel>메모</ContentLabel>
-        <MemoInput maxLength="100" onChange={(e) => setMemo(e.target.value)} />
+        <MemoInput maxLength="100" onChange={(e) => editMemo(e.target.value)} />
       </ContentWrap>
       <BtnWrap>
         <DoneBtn
